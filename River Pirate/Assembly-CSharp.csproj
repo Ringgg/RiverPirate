@@ -47,9 +47,11 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Meshes\Water (Basic)\Sources\Scripts\WaterSimple.cs" />
-     <Compile Include="Assets\Scripts\Obstacle.cs" />
-     <Compile Include="Assets\Scripts\Player_Controller.cs" />
-     <Compile Include="Assets\Scripts\spawner.cs" />
+     <Compile Include="Assets\Scripts\Obstacle\Obstacle.cs" />
+     <Compile Include="Assets\Scripts\Obstacle\spawner.cs" />
+     <Compile Include="Assets\Scripts\Player\Player_Controller.cs" />
+     <Compile Include="Assets\Scripts\Shore\Shore.cs" />
+     <Compile Include="Assets\Scripts\Shore\shore_spawner.cs" />
      <None Include="Assets\Meshes\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
