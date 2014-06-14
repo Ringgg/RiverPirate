@@ -39,20 +39,27 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>C:/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>C:/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Meshes\Water (Basic)\Sources\Scripts\WaterSimple.cs" />
+     <Compile Include="Assets\Models\Water (Basic)\Sources\Scripts\WaterSimple.cs" />
+     <Compile Include="Assets\Scripts\GUI\gui.cs" />
+     <Compile Include="Assets\Scripts\GUI\settings.cs" />
      <Compile Include="Assets\Scripts\Obstacle\Obstacle.cs" />
+     <Compile Include="Assets\Scripts\Obstacle\bonus_life.cs" />
+     <Compile Include="Assets\Scripts\Obstacle\bonus_score.cs" />
+     <Compile Include="Assets\Scripts\Obstacle\obst_shore.cs" />
      <Compile Include="Assets\Scripts\Obstacle\spawner.cs" />
      <Compile Include="Assets\Scripts\Player\Player_Controller.cs" />
+     <Compile Include="Assets\Scripts\Player\player_controller_backup.cs" />
+     <Compile Include="Assets\Scripts\Player\tilt.cs" />
      <Compile Include="Assets\Scripts\Shore\Shore.cs" />
      <Compile Include="Assets\Scripts\Shore\shore_spawner.cs" />
-     <None Include="Assets\Meshes\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
+     <None Include="Assets\Models\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
