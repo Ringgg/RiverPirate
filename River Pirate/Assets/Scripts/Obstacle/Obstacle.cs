@@ -17,9 +17,17 @@ public class Obstacle : MonoBehaviour {
 		if (!ZderzylSie)
 		{
 			kontroller = col.gameObject.GetComponent<Player_Controller>();
-			kontroller.life -=1;
+            if (kontroller != null)
+            {
+                kontroller.GetDamage(1);
+                
+                this.collider.enabled = false;
+            }
+
+            //Debug.Log("zderzenie");
+            
 		}
-		Debug.Log ("zderzenie");
+		
 		ZderzylSie = true;
 	}
 	void FixedUpdate () {

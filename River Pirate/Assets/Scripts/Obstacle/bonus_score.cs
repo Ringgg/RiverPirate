@@ -13,7 +13,7 @@ public class bonus_score : MonoBehaviour {
 	{
 		gui.GetComponent<gui>().x +=100;
 		Destroy (gameObject);
-		Debug.Log ("bonus_pkt");
+		//Debug.Log ("bonus_pkt");
 	}
 	void FixedUpdate () {
 		//rigidbody.AddForce (Vector3.left * Speed, ForceMode.Acceleration);

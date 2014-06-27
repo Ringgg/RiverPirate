@@ -16,7 +16,6 @@ public class gui : MonoBehaviour {
 		y = 0f;
 		Time.timeScale = 0.0f;
 		drawBox = true;
-
 	}
 	
 	void OnGUI () {
