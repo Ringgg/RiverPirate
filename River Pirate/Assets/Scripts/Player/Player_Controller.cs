@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Player_Controller : MonoBehaviour {
-
+    
 	public int life {get; private set; }
 	public float speed;
 	public float position;
@@ -15,6 +15,7 @@ public class Player_Controller : MonoBehaviour {
     private Mesh currentMesh = null;
     private MeshFilter meshFilter;
     private MeshCollider meshCollider;
+    public DicePlusAdapter diceControlScript;
 
 	void Start () {
 		betterPlace = GameObject.Find ("Moving");
@@ -69,18 +70,31 @@ public class Player_Controller : MonoBehaviour {
 
     }
 
+    public GUIText debugField;
 
 	void PositionChanging () {
-		mysz = Input.mousePosition.x;
 
-		position =  -80 * mysz/res + 40;
-		if (position > 20)
-			position = 20;
-		if (position < -20)
-			position = -20;
-		if (shorecrash < 20)
-			position = 0;
-		transform.position = Vector3.Lerp(transform.position, new Vector3(betterPlace.transform.position.x,1,position), speed * Time.deltaTime );
+        if (diceControlScript.DiceConnected)
+        {
+            position = 20 * diceControlScript.Lean;
+            debugField.text = diceControlScript.Lean.ToString();
+            transform.position = Vector3.Lerp(transform.position, new Vector3(betterPlace.transform.position.x, 1, position), 1.5f*speed * Time.deltaTime);
+        }
+        else
+        {
+            mysz = Input.mousePosition.x;
+
+            position = -80 * mysz / res + 40;
+            if (position > 20)
+                position = 20;
+            if (position < -20)
+                position = -20;
+            if (shorecrash < 20)
+                position = 0;
+            transform.position = Vector3.Lerp(transform.position, new Vector3(betterPlace.transform.position.x, 1, position), speed * Time.deltaTime);
+        }
+
+        
 	}
 }
 
