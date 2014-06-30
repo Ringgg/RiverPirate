@@ -34,7 +34,8 @@ public class gui : MonoBehaviour {
 		{
 			if(GUI.Button (new Rect( (screenWidth/2 - screenWidth/8), (screenHeight/2 - screenHeight/20) ,screenWidth/4, screenHeight/10), "PLAY"))
 			{
-				Time.timeScale = 1f;
+				Time.timeScale = 0.1f;
+                StartCoroutine(waitForDice());
 				drawBox = false;
 			}
 		}
@@ -45,4 +46,10 @@ public class gui : MonoBehaviour {
 		x += Time.deltaTime * 10;
 		y = Mathf.Round(x);
 	}
+
+    IEnumerator waitForDice()
+    {
+        yield return new WaitForSeconds(0.5f);
+        Time.timeScale = 1.0f;
+    }
 }

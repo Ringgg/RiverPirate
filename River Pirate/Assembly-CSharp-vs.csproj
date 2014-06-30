@@ -54,8 +54,9 @@
      <Compile Include="Assets\Scripts\Obstacle\bonus_score.cs" />
      <Compile Include="Assets\Scripts\Obstacle\obst_shore.cs" />
      <Compile Include="Assets\Scripts\Obstacle\spawner.cs" />
-     <Compile Include="Assets\Scripts\Player\DiceControlScript.cs" />
+     <Compile Include="Assets\Scripts\Player\CameraSmoothFollow.cs" />
      <Compile Include="Assets\Scripts\Player\DicePlusAdapter.cs" />
+     <Compile Include="Assets\Scripts\Player\DoNotDestroy.cs" />
      <Compile Include="Assets\Scripts\Player\Player_Controller.cs" />
      <Compile Include="Assets\Scripts\Player\player_controller_backup.cs" />
      <Compile Include="Assets\Scripts\Player\tilt.cs" />

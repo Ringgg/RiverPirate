@@ -15,7 +15,8 @@ public class Player_Controller : MonoBehaviour {
     private Mesh currentMesh = null;
     private MeshFilter meshFilter;
     private MeshCollider meshCollider;
-    public DicePlusAdapter diceControlScript;
+    //public DicePlusAdapter diceControlScript;
+    private bool positionControl = false;
 
 	void Start () {
 		betterPlace = GameObject.Find ("Moving");
@@ -23,6 +24,7 @@ public class Player_Controller : MonoBehaviour {
 		life = meshes.Count;
 		position = 0;
 		shorecrash = 30;
+        //diceControlScript = DicePlusAdapter.instance;
 
         if (meshes.Count > 0)
         {
@@ -74,11 +76,27 @@ public class Player_Controller : MonoBehaviour {
 
 	void PositionChanging () {
 
-        if (diceControlScript.DiceConnected)
+        if (DicePlusAdapter.instance.DiceConnected && positionControl)
         {
-            position = 20 * diceControlScript.Lean;
-            debugField.text = diceControlScript.Lean.ToString();
-            transform.position = Vector3.Lerp(transform.position, new Vector3(betterPlace.transform.position.x, 1, position), 1.5f*speed * Time.deltaTime);
+            position = 20 * DicePlusAdapter.instance.Lean;
+            debugField.text = DicePlusAdapter.instance.Lean.ToString();
+            transform.position = Vector3.Lerp(transform.position, new Vector3(betterPlace.transform.position.x, 1, position), 1.5f * speed * Time.deltaTime);
+        }
+        else if (DicePlusAdapter.instance.DiceConnected)
+        {
+            //Vector3 velocity = new Vector3();
+            position = transform.position.z;
+            position += DicePlusAdapter.instance.Lean * 10 * speed * Time.deltaTime;
+
+            if (position > 20)
+                position = 20;
+            if (position < -20)
+                position = -20;
+            if (shorecrash < 20)
+                position = 0;
+            transform.position = new Vector3(betterPlace.transform.position.x, 1, position);
+
+            debugField.text = DicePlusAdapter.instance.Lean.ToString();
         }
         else
         {

@@ -12,11 +12,22 @@ public class DicePlusAdapter : MonoBehaviour, IDicePlusListener, IDicePlusConnec
     public Vector3 direction = Vector3.zero;
     private bool firstReadOut = true;
     public float Lean { get; private set; }
+    public static DicePlusAdapter instance = null;
 
     void Start()
     {
         Lean = 0.0f;
-        DicePlusConnector.Instance.registerListener(this);    
+        GameObject.DontDestroyOnLoad(this.gameObject);
+        if (instance != null)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+        DicePlusConnector.Instance.registerListener(this);
+
     }
 
     // Update is called once per frame
@@ -26,9 +37,11 @@ public class DicePlusAdapter : MonoBehaviour, IDicePlusListener, IDicePlusConnec
         {
             myDice.subscribeOrientationReadouts(20);
             refreshed = true;
-            StartCoroutine(refreshDelay());
-            
+            StartCoroutine(refreshDelay());            
         }
+
+        Lean = Mathf.Lerp(Lean, leanReadout, 0.1f);
+
     }
 
     IEnumerator refreshDelay()
@@ -83,6 +96,7 @@ public class DicePlusAdapter : MonoBehaviour, IDicePlusListener, IDicePlusConnec
     }
 
 
+    private float leanReadout = 0;
     public void onOrientationReadout(DicePlus dicePlus, long time, Vector3 v, string errorMsg)
     {
         if (firstReadOut)
@@ -90,9 +104,9 @@ public class DicePlusAdapter : MonoBehaviour, IDicePlusListener, IDicePlusConnec
             startDirection = v;
             firstReadOut = false;
         }
-
         direction = v - startDirection;
-        Lean = (float)direction.y / 90.0f;
+        leanReadout = (float)direction.y / 90.0f;
+        
     }
 
     public void onTemperatureReadout(DicePlus dicePlus, long time, float temperature, string errorMsg)
